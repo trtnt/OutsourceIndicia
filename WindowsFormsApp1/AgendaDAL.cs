@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WindowsFormsApp1
 {
-    class AgendaDAL
+    public class AgendaDAL
     {
         private SqlConnection con;
 
@@ -16,10 +16,10 @@ namespace WindowsFormsApp1
             con = new SqlConnection(constring);
         }
 
-        public List<Agenda> GetAgenda()
+        public List<AgendaDTO> GetAgenda()
         {
             Connection();
-            List<Agenda> agendalist = new List<Agenda>();
+            List<AgendaDTO> agendalist = new List<AgendaDTO>();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Agenda", con);
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
@@ -32,14 +32,12 @@ namespace WindowsFormsApp1
             foreach (DataRow dr in dt.Rows)
             {
                 agendalist.Add(
-                    new Agenda
+                    new AgendaDTO
                     {
-                        AgendaID = Convert.ToInt32(dr["Agenda_Id"]),
                         BeginDatum = Convert.ToDateTime(dr["BeginDatum"]),
                         EindDatum = Convert.ToDateTime(dr["EindDatum"]),
-                        BeginTijd = Convert.ToDateTime(dr["BeginTijd"]),
+                        BeginTijd = Convert.ToDateTime( dr["BeginTijd"]),
                         EindTijd = Convert.ToDateTime(dr["EindTijd"]),
-                        DeelnemerID = Convert.ToInt32(dr["Deelnemer_Id"]),
                         Omschrijving = Convert.ToString(dr["Omschrijving"]),
                         Categorie = Convert.ToString(dr["Categorie"]),
                         Locatie = Convert.ToString(dr["Categorie"])
@@ -48,7 +46,7 @@ namespace WindowsFormsApp1
             return agendalist;
         }
 
-        public int Insert(AgendaDTO agendaDTO)
+        public void Insert(AgendaDTO agendaDTO)
         {
             Connection();
             con.Open();
@@ -64,7 +62,7 @@ namespace WindowsFormsApp1
                 dCmd.Parameters.AddWithValue("@omschrijving", agendaDTO.Omschrijving);
                 dCmd.Parameters.AddWithValue("@categorie", agendaDTO.Categorie);
                 dCmd.Parameters.AddWithValue("@locatie", agendaDTO.Locatie);
-                return dCmd.ExecuteNonQuery();
+                dCmd.ExecuteNonQuery();
             }
             catch
             {

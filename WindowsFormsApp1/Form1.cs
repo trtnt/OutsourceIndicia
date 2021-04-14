@@ -53,23 +53,36 @@ namespace WindowsFormsApp1
         private void btnOpslaan_Click(object sender, EventArgs e)
         {
             addAppointment();
+            MessageBox.Show("Afspraak staat ingepland");
         }
 
         public void addAppointment()
         {
             AgendaContainer agendacontainer = new AgendaContainer();
+
+            DateTimePicker timePicker = new DateTimePicker();
+            timePicker.Format = DateTimePickerFormat.Custom;
+            timePicker.CustomFormat = "HH:mm"; // Only use hours and minutes
+            timePicker.ShowUpDown = true;
+
             DateTime begindatum = beginDatum.Value;
             DateTime einddatum = Einddatum.Value;
-            DateTime begintijd = begindatum.ToUniversalTime();
-            DateTime eindtijd = einddatum.ToUniversalTime();
+            DateTime begintijd = timeStart.Value;
+            DateTime eindtijd = timeEinde.Value;
             string categorie = txtCategorie.Text;
             string locatie = txtLocatie.Text;
             string omschrijving = txtOmschrijving.Text;
 
-            agendacontainer.insert(beginDatum.Value, Einddatum.Value, begindatum.ToUniversalTime, einddatum.ToUniversalTime,txtCategorie.Text , txtLocatie.Text, txtOmschrijving.Text);
+            Agenda agenda = new Agenda(begindatum, einddatum, begintijd, eindtijd, categorie, locatie, omschrijving);
+            agendacontainer.insert(agenda);
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Einddatum_ValueChanged(object sender, EventArgs e)
         {
 
         }

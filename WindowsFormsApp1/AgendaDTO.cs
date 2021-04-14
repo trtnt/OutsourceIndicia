@@ -14,6 +14,10 @@ namespace WindowsFormsApp1
         public string Categorie { get; set; }
         public string Locatie { get; set; }
 
+        public AgendaDTO()
+        {
+
+        }
         public AgendaDTO(DateTime begindatum, DateTime einddatum, DateTime begintijd, DateTime eindtijd, string omschrijving, string categorie, string locatie)
         {
             this.BeginDatum = begindatum;

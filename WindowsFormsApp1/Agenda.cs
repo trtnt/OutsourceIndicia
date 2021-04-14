@@ -15,5 +15,16 @@ namespace WindowsFormsApp1
         public string Omschrijving { get; set; }
         public string Categorie { get; set; }
         public string Locatie { get; set; }
+
+        public Agenda(DateTime begindatum, DateTime einddatum, DateTime begintijd, DateTime eindtijd, string omschrijving, string categorie, string locatie)
+        {
+            this.BeginDatum = begindatum;
+            this.EindDatum = einddatum;
+            this.BeginTijd = begintijd;
+            this.EindTijd = eindtijd;
+            this.Omschrijving = omschrijving;
+            this.Categorie = categorie;
+            this.Locatie = locatie;
+        }
     }
 }
