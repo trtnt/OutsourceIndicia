@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -16,12 +17,16 @@ namespace WindowsFormsApp1
             con = new SqlConnection(constring);
         }
 
-        public List<AgendaDTO> GetAgenda()
+        public List<AgendaDTO> GetAgenda(DateTime begindatum)
         {
             Connection();
+        
             List<AgendaDTO> agendalist = new List<AgendaDTO>();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Agenda", con);
+            SqlCommand cmd = new SqlCommand("dbo.GetDetails" , con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@begindatum", begindatum);
+
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
 
@@ -36,11 +41,11 @@ namespace WindowsFormsApp1
                     {
                         BeginDatum = Convert.ToDateTime(dr["BeginDatum"]),
                         EindDatum = Convert.ToDateTime(dr["EindDatum"]),
-                        BeginTijd = Convert.ToDateTime( dr["BeginTijd"]),
-                        EindTijd = Convert.ToDateTime(dr["EindTijd"]),
+                        BeginTijd =  TimeSpan.Parse(dr["BeginTijd"].ToString()),
+                        EindTijd = TimeSpan.Parse(dr["EindTijd"].ToString()),
                         Omschrijving = Convert.ToString(dr["Omschrijving"]),
                         Categorie = Convert.ToString(dr["Categorie"]),
-                        Locatie = Convert.ToString(dr["Categorie"])
+                        Locatie = Convert.ToString(dr["Locatie"])
                     });
             }
             return agendalist;

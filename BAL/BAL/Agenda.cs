@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DAL;
 
-namespace WindowsFormsApp1
+namespace BAL
 {
     public class Agenda
     {
         public int AgendaID { get; set; }
         public DateTime BeginDatum { get; set; }
         public DateTime EindDatum { get; set; }
-        public DateTime BeginTijd { get; set; }
-        public DateTime EindTijd { get; set; }
+        public TimeSpan BeginTijd { get; set; }
+        public TimeSpan EindTijd { get; set; }
         public int DeelnemerID { get; set; }
         public string Omschrijving { get; set; }
         public string Categorie { get; set; }
         public string Locatie { get; set; }
 
-        public Agenda(DateTime begindatum, DateTime einddatum, DateTime begintijd, DateTime eindtijd, string omschrijving, string categorie, string locatie)
+        public Agenda(DateTime begindatum, DateTime einddatum, TimeSpan begintijd, TimeSpan eindtijd, string omschrijving, string categorie, string locatie)
         {
             this.BeginDatum = begindatum;
             this.EindDatum = einddatum;

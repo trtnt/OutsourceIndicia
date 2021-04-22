@@ -35,6 +35,9 @@ namespace WindowsFormsApp1
             this.lblHead = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupMaanden = new System.Windows.Forms.GroupBox();
+            this.Categorie = new System.Windows.Forms.ComboBox();
+            this.timeEinde = new System.Windows.Forms.DateTimePicker();
+            this.timeStart = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Einddatum = new System.Windows.Forms.DateTimePicker();
@@ -44,16 +47,15 @@ namespace WindowsFormsApp1
             this.beginDatum = new System.Windows.Forms.DateTimePicker();
             this.txtOmschrijving = new System.Windows.Forms.TextBox();
             this.txtLocatie = new System.Windows.Forms.TextBox();
-            this.txtCategorie = new System.Windows.Forms.TextBox();
             this.btnOpslaan = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.btnSluiten = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.timeStart = new System.Windows.Forms.DateTimePicker();
-            this.timeEinde = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupMaanden.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -77,15 +79,16 @@ namespace WindowsFormsApp1
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(621, 120);
+            this.pictureBox1.Location = new System.Drawing.Point(580, 71);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(226, 195);
+            this.pictureBox1.Size = new System.Drawing.Size(122, 105);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // groupMaanden
             // 
+            this.groupMaanden.Controls.Add(this.Categorie);
             this.groupMaanden.Controls.Add(this.timeEinde);
             this.groupMaanden.Controls.Add(this.timeStart);
             this.groupMaanden.Controls.Add(this.label5);
@@ -97,7 +100,6 @@ namespace WindowsFormsApp1
             this.groupMaanden.Controls.Add(this.beginDatum);
             this.groupMaanden.Controls.Add(this.txtOmschrijving);
             this.groupMaanden.Controls.Add(this.txtLocatie);
-            this.groupMaanden.Controls.Add(this.txtCategorie);
             this.groupMaanden.Controls.Add(this.btnOpslaan);
             this.groupMaanden.Controls.Add(this.monthCalendar1);
             this.groupMaanden.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -108,6 +110,37 @@ namespace WindowsFormsApp1
             this.groupMaanden.TabStop = false;
             this.groupMaanden.Text = "Maanden";
             this.groupMaanden.Enter += new System.EventHandler(this.groupMaanden_Enter);
+            // 
+            // Categorie
+            // 
+            this.Categorie.FormattingEnabled = true;
+            this.Categorie.Items.AddRange(new object[] {
+            "Meeting",
+            "Pauze",
+            "Bellen",
+            "Vrij"});
+            this.Categorie.Location = new System.Drawing.Point(112, 516);
+            this.Categorie.Name = "Categorie";
+            this.Categorie.Size = new System.Drawing.Size(121, 29);
+            this.Categorie.TabIndex = 14;
+            // 
+            // timeEinde
+            // 
+            this.timeEinde.CustomFormat = "hh:m";
+            this.timeEinde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timeEinde.Location = new System.Drawing.Point(112, 428);
+            this.timeEinde.Name = "timeEinde";
+            this.timeEinde.Size = new System.Drawing.Size(84, 29);
+            this.timeEinde.TabIndex = 13;
+            // 
+            // timeStart
+            // 
+            this.timeStart.CustomFormat = "hh:m";
+            this.timeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timeStart.Location = new System.Drawing.Point(112, 302);
+            this.timeStart.Name = "timeStart";
+            this.timeStart.Size = new System.Drawing.Size(84, 29);
+            this.timeStart.TabIndex = 12;
             // 
             // label5
             // 
@@ -187,14 +220,6 @@ namespace WindowsFormsApp1
             this.txtLocatie.TabIndex = 3;
             this.txtLocatie.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // txtCategorie
-            // 
-            this.txtCategorie.Location = new System.Drawing.Point(112, 516);
-            this.txtCategorie.Name = "txtCategorie";
-            this.txtCategorie.Size = new System.Drawing.Size(140, 29);
-            this.txtCategorie.TabIndex = 2;
-            this.txtCategorie.TextChanged += new System.EventHandler(this.txtCategorie_TextChanged);
-            // 
             // btnOpslaan
             // 
             this.btnOpslaan.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -226,23 +251,15 @@ namespace WindowsFormsApp1
             this.btnSluiten.Text = "Sluiten";
             this.btnSluiten.UseVisualStyleBackColor = false;
             // 
-            // timeStart
+            // dataGridView1
             // 
-            this.timeStart.CustomFormat = "hh:m";
-            this.timeStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeStart.Location = new System.Drawing.Point(112, 302);
-            this.timeStart.Name = "timeStart";
-            this.timeStart.Size = new System.Drawing.Size(84, 29);
-            this.timeStart.TabIndex = 12;
-            // 
-            // timeEinde
-            // 
-            this.timeEinde.CustomFormat = "hh:m";
-            this.timeEinde.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeEinde.Location = new System.Drawing.Point(112, 428);
-            this.timeEinde.Name = "timeEinde";
-            this.timeEinde.Size = new System.Drawing.Size(84, 29);
-            this.timeEinde.TabIndex = 13;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(562, 194);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(699, 350);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Form1
             // 
@@ -250,6 +267,7 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1273, 826);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSluiten);
             this.Controls.Add(this.groupMaanden);
             this.Controls.Add(this.pictureBox1);
@@ -261,6 +279,7 @@ namespace WindowsFormsApp1
             this.groupMaanden.ResumeLayout(false);
             this.groupMaanden.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +297,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox txtOmschrijving;
         private System.Windows.Forms.TextBox txtLocatie;
-        private System.Windows.Forms.TextBox txtCategorie;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -288,6 +306,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker timeEinde;
         private System.Windows.Forms.DateTimePicker timeStart;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox Categorie;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

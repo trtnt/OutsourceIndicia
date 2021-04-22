@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace WindowsFormsApp1
+namespace DAL
 {
     public class UserDAL
     {
