@@ -14,10 +14,11 @@ namespace BAL
         public TimeSpan EindTijd { get; set; }
         public int DeelnemerID { get; set; }
         public string Omschrijving { get; set; }
+        public string Agendatype { get; set; }
         public string Categorie { get; set; }
         public string Locatie { get; set; }
 
-        public Agenda(DateTime begindatum, DateTime einddatum, TimeSpan begintijd, TimeSpan eindtijd, string omschrijving, string categorie, string locatie)
+        public Agenda(DateTime begindatum, DateTime einddatum, TimeSpan begintijd, TimeSpan eindtijd, string omschrijving, string categorie, string locatie, string type)
         {
             this.BeginDatum = begindatum;
             this.EindDatum = einddatum;
@@ -26,6 +27,7 @@ namespace BAL
             this.Omschrijving = omschrijving;
             this.Categorie = categorie;
             this.Locatie = locatie;
+            this.Agendatype = type;
         }
     }
 }

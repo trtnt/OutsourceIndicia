@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WindowsFormsApp1
+namespace DAL
 {
     public class AgendaDTO
     {
@@ -13,12 +13,13 @@ namespace WindowsFormsApp1
         public string Omschrijving { get; set; }
         public string Categorie { get; set; }
         public string Locatie { get; set; }
+        public string Agendatype { get; set; }
 
         public AgendaDTO()
         {
 
         }
-        public AgendaDTO(DateTime begindatum, DateTime einddatum, TimeSpan begintijd, TimeSpan eindtijd, string omschrijving, string categorie, string locatie)
+        public AgendaDTO(DateTime begindatum, DateTime einddatum, TimeSpan begintijd, TimeSpan eindtijd, string omschrijving, string categorie, string locatie, string agendatype)
         {
             this.BeginDatum = begindatum;
             this.EindDatum = einddatum;
@@ -27,6 +28,7 @@ namespace WindowsFormsApp1
             this.Omschrijving = omschrijving;
             this.Categorie = categorie;
             this.Locatie = locatie;
+            this.Agendatype = agendatype;
         }
     }
 

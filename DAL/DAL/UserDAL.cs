@@ -1,12 +1,14 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
+
 namespace DAL
 {
-    public class UserDAL
+    public class UserDAL : IUserDAL
     {
 
         private SqlConnection con;
@@ -17,10 +19,10 @@ namespace DAL
             con = new SqlConnection(constring);
         }
 
-        public List<User> GetUsers()
+        public List<UserDTO> GetUsers()
         {
             Connection();
-            List<User> userlist = new List<User>();
+            List<UserDTO> userlist = new List<UserDTO>();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.User", con);
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
@@ -33,13 +35,13 @@ namespace DAL
             foreach (DataRow dr in dt.Rows)
             {
                 userlist.Add(
-                    new User
+                    new UserDTO
                     {
                         UserID = Convert.ToInt32(dr["User_Id"]),
+                        AgendaID = Convert.ToInt32(dr["Agenda_Id"]),
                         User_Naam = Convert.ToString(dr["User_Naam"]),
                         Achternaam = Convert.ToString(dr["Achternaam"]),
-                        BSN = Convert.ToInt32(dr["BSN"]),
-                        AgendaID = Convert.ToInt32(dr["Agenda_Id"])
+                        BSN = Convert.ToInt32(dr["BSN"])
 
                     });
             }

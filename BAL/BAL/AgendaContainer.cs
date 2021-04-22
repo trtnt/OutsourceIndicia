@@ -8,10 +8,18 @@ namespace BAL
 {
     public class AgendaContainer
     {
+        public AgendaContainer(AgendaDAL agendaDAL)
+        {
+        }
+
+        public AgendaContainer()
+        {
+        }
+
         public void insert(Agenda agenda)
         {
             AgendaDAL agendaDAL = new AgendaDAL();
-            agendaDAL.Insert(new AgendaDTO(agenda.BeginDatum, agenda.EindDatum, agenda.BeginTijd, agenda.EindTijd, agenda.Omschrijving, agenda.Categorie, agenda.Locatie));
+            agendaDAL.Insert(new AgendaDTO(agenda.BeginDatum, agenda.EindDatum, agenda.BeginTijd, agenda.EindTijd, agenda.Omschrijving, agenda.Categorie, agenda.Locatie, agenda.Agendatype));
         }
 
         public List<Agenda> getAll(DateTime begindatum)
@@ -22,7 +30,7 @@ namespace BAL
 
             foreach (AgendaDTO agenda in agendas)
             {
-                agendalist.Add(new Agenda(agenda.BeginDatum, agenda.EindDatum, agenda.BeginTijd, agenda.EindTijd, agenda.Omschrijving, agenda.Categorie, agenda.Locatie));
+                agendalist.Add(new Agenda(agenda.BeginDatum, agenda.EindDatum, agenda.BeginTijd, agenda.EindTijd, agenda.Omschrijving, agenda.Categorie, agenda.Locatie, agenda.Agendatype));
             }
 
             return agendalist;

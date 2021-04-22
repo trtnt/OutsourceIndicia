@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace DAL
 {
-    public class AgendaDAL
+    public class AgendaDAL : IAgendaDAL
     {
         private SqlConnection con;
 
@@ -45,7 +44,8 @@ namespace WindowsFormsApp1
                         EindTijd = TimeSpan.Parse(dr["EindTijd"].ToString()),
                         Omschrijving = Convert.ToString(dr["Omschrijving"]),
                         Categorie = Convert.ToString(dr["Categorie"]),
-                        Locatie = Convert.ToString(dr["Locatie"])
+                        Locatie = Convert.ToString(dr["Locatie"]),
+                        Agendatype = Convert.ToString(dr["Agendatype"]),
                     });
             }
             return agendalist;
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
         {
             Connection();
             con.Open();
-            string cmd = "INSERT into dbo.Agenda (BeginDatum,EindDatum,BeginTijd,EindTijd,Omschrijving,Categorie,Locatie) VALUES (@begindatum, @einddatum, @begintijd, @eindtijd, @omschrijving, @categorie, @locatie )";
+            string cmd = "INSERT into dbo.Agenda (BeginDatum,EindDatum,BeginTijd,EindTijd,Omschrijving,Categorie,Locatie,Agendatype) VALUES (@begindatum, @einddatum, @begintijd, @eindtijd, @omschrijving, @categorie, @locatie, @agendatype)";
 
             SqlCommand dCmd = new SqlCommand(cmd, con);
             try
@@ -65,8 +65,10 @@ namespace WindowsFormsApp1
                 dCmd.Parameters.AddWithValue("@begintijd", agendaDTO.BeginTijd);
                 dCmd.Parameters.AddWithValue("@eindtijd", agendaDTO.EindTijd);
                 dCmd.Parameters.AddWithValue("@omschrijving", agendaDTO.Omschrijving);
+                dCmd.Parameters.AddWithValue("@agendatype", agendaDTO.Agendatype);
                 dCmd.Parameters.AddWithValue("@categorie", agendaDTO.Categorie);
                 dCmd.Parameters.AddWithValue("@locatie", agendaDTO.Locatie);
+              
                 dCmd.ExecuteNonQuery();
             }
             catch

@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace UI
 {
     partial class Form1
     {
@@ -35,6 +35,8 @@ namespace WindowsFormsApp1
             this.lblHead = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupMaanden = new System.Windows.Forms.GroupBox();
+            this.Agendatype = new System.Windows.Forms.Label();
+            this.agendatype1 = new System.Windows.Forms.ComboBox();
             this.Categorie = new System.Windows.Forms.ComboBox();
             this.timeEinde = new System.Windows.Forms.DateTimePicker();
             this.timeStart = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +54,8 @@ namespace WindowsFormsApp1
             this.btnSluiten = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupMaanden.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -74,7 +78,6 @@ namespace WindowsFormsApp1
             this.lblHead.Size = new System.Drawing.Size(176, 30);
             this.lblHead.TabIndex = 2;
             this.lblHead.Text = "Indicia kalender ";
-            this.lblHead.Click += new System.EventHandler(this.lblHead_Click);
             // 
             // pictureBox1
             // 
@@ -88,6 +91,8 @@ namespace WindowsFormsApp1
             // 
             // groupMaanden
             // 
+            this.groupMaanden.Controls.Add(this.Agendatype);
+            this.groupMaanden.Controls.Add(this.agendatype1);
             this.groupMaanden.Controls.Add(this.Categorie);
             this.groupMaanden.Controls.Add(this.timeEinde);
             this.groupMaanden.Controls.Add(this.timeStart);
@@ -111,6 +116,31 @@ namespace WindowsFormsApp1
             this.groupMaanden.Text = "Maanden";
             this.groupMaanden.Enter += new System.EventHandler(this.groupMaanden_Enter);
             // 
+            // Agendatype
+            // 
+            this.Agendatype.AutoSize = true;
+            this.Agendatype.Location = new System.Drawing.Point(108, 479);
+            this.Agendatype.Name = "Agendatype";
+            this.Agendatype.Size = new System.Drawing.Size(46, 21);
+            this.Agendatype.TabIndex = 16;
+            this.Agendatype.Text = "Type";
+            // 
+            // agendatype1
+            // 
+            this.agendatype1.FormattingEnabled = true;
+            this.agendatype1.Items.AddRange(new object[] {
+            "Mijn kalender",
+            "Zakelijk",
+            "Familie",
+            "Vrienden",
+            "Reizen",
+            "Verjaardagen",
+            "Vakanties"});
+            this.agendatype1.Location = new System.Drawing.Point(108, 503);
+            this.agendatype1.Name = "agendatype1";
+            this.agendatype1.Size = new System.Drawing.Size(316, 29);
+            this.agendatype1.TabIndex = 15;
+            // 
             // Categorie
             // 
             this.Categorie.FormattingEnabled = true;
@@ -119,7 +149,7 @@ namespace WindowsFormsApp1
             "Pauze",
             "Bellen",
             "Vrij"});
-            this.Categorie.Location = new System.Drawing.Point(112, 516);
+            this.Categorie.Location = new System.Drawing.Point(108, 560);
             this.Categorie.Name = "Categorie";
             this.Categorie.Size = new System.Drawing.Size(121, 29);
             this.Categorie.TabIndex = 14;
@@ -166,12 +196,11 @@ namespace WindowsFormsApp1
             this.Einddatum.Name = "Einddatum";
             this.Einddatum.Size = new System.Drawing.Size(312, 29);
             this.Einddatum.TabIndex = 9;
-            this.Einddatum.ValueChanged += new System.EventHandler(this.Einddatum_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 548);
+            this.label3.Location = new System.Drawing.Point(108, 592);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 21);
             this.label3.TabIndex = 8;
@@ -180,7 +209,7 @@ namespace WindowsFormsApp1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 492);
+            this.label2.Location = new System.Drawing.Point(280, 536);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 21);
             this.label2.TabIndex = 7;
@@ -189,12 +218,11 @@ namespace WindowsFormsApp1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 492);
+            this.label1.Location = new System.Drawing.Point(108, 536);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 21);
             this.label1.TabIndex = 6;
             this.label1.Text = "Categorie";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // beginDatum
             // 
@@ -206,7 +234,7 @@ namespace WindowsFormsApp1
             // 
             // txtOmschrijving
             // 
-            this.txtOmschrijving.Location = new System.Drawing.Point(112, 572);
+            this.txtOmschrijving.Location = new System.Drawing.Point(108, 616);
             this.txtOmschrijving.Multiline = true;
             this.txtOmschrijving.Name = "txtOmschrijving";
             this.txtOmschrijving.Size = new System.Drawing.Size(312, 79);
@@ -214,16 +242,15 @@ namespace WindowsFormsApp1
             // 
             // txtLocatie
             // 
-            this.txtLocatie.Location = new System.Drawing.Point(284, 516);
+            this.txtLocatie.Location = new System.Drawing.Point(280, 560);
             this.txtLocatie.Name = "txtLocatie";
             this.txtLocatie.Size = new System.Drawing.Size(140, 29);
             this.txtLocatie.TabIndex = 3;
-            this.txtLocatie.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // btnOpslaan
             // 
             this.btnOpslaan.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOpslaan.Location = new System.Drawing.Point(208, 657);
+            this.btnOpslaan.Location = new System.Drawing.Point(204, 701);
             this.btnOpslaan.Name = "btnOpslaan";
             this.btnOpslaan.Size = new System.Drawing.Size(113, 32);
             this.btnOpslaan.TabIndex = 1;
@@ -259,7 +286,16 @@ namespace WindowsFormsApp1
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(699, 350);
             this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // notifyIcon2
+            // 
+            this.notifyIcon2.Text = "Notify\r\n";
+            this.notifyIcon2.Visible = true;
             // 
             // Form1
             // 
@@ -306,9 +342,12 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker timeEinde;
         private System.Windows.Forms.DateTimePicker timeStart;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox Categorie;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon notifyIcon2;
+        private System.Windows.Forms.Label Agendatype;
+        private System.Windows.Forms.ComboBox agendatype1;
     }
 }
 
